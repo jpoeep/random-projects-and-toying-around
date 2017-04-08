@@ -1,0 +1,128 @@
+<html>
+    <head>
+        <script src="../script.js"></script>
+        <script src="https://rawgit.com/jpoeep/code-to-make-coding-easier/master/script.js"></script>
+        <script>
+            (function() {
+                document.title = "BUTTONS";
+            })();
+        </script>
+    </head>
+    <body>
+        <img class='sunburst'/>
+        <script>
+            (function() {
+                /*Object.prototype.toggle = function(obj) {
+                    var t = this;
+                    
+                    obj.properties().forEach(function(prop) {
+                        if(t[prop] == obj[prop][0]) {
+                            t[prop] = obj[prop][1];
+                        }
+
+                        else if(t[prop] == obj[prop][1]) {
+                            t[prop] = obj[prop][0];
+                        }
+
+                        else {
+                            t[prop] = obj[prop][0];
+                        }
+                    });
+                };
+                
+                document.body.style.background = "white";
+                
+                document.onclick = function() {
+                    document.body.style.toggle({
+                        background: ["white", "black"]
+                    });
+                };*/
+                
+                /*var script = document.createElement("script");
+                script.src = "https://rawgit.com/jpoeep/code-to-make-coding-easier/master/script.js";
+                document.body.appendChild(script);*/
+                
+                /*var script = document.createElement("script");
+                script.src = "https://rawgit.com/jpoeep/code-to-make-coding-easier/master/script.js";
+                document.body.appendChild(script);
+                
+                script.onload = function() {
+                    loop(function() {
+                        var title = document.title.substring(0, document.title.lastIndexOf(" -")).toLowerCase();
+                        
+                        if(title.indexOf("spotify") > -1) {
+                            //mute audio
+                        }
+                        
+                        else {
+                            //unmute audio
+                        }
+                    });
+                };*/
+                
+                /*function observe(target, cfg) {
+                    var observer = new MutationObserver(function(mutations) {
+                        cfg.callback(mutations);
+                    });
+                    
+                    var config = {
+                        attributes: cfg.attributes,
+                        characterData: cfg.data,
+                        childList: cfg.children,
+                        subTree: cfg.allChildren
+                    };
+                    
+                    observer.observe(target, config);
+                }*/
+                
+                Element.prototype.position = function(x, y) {
+                    return "translate(" + (-this.offsetLeft + x) + "px, " + (-this.offsetTop + y) + "px)"
+                };
+                
+                var BUTTONS = new Audio();
+                BUTTONS.src = "buttons.wav";
+                BUTTONS.loop = true;
+                BUTTONS.volume = 0.01;
+                BUTTONS.play();
+                
+                var button = $("body").create("button");
+                button.textContent = "BUTTONS";
+                
+                button.s({
+                    position: "absolute",
+                    left: window.innerWidth / 2 - button.clientWidth / 2 + "px",
+                    top: window.innerHeight / 2 - button.clientHeight / 2 + "px"
+                });
+                
+                let distFactor = 0.25;
+                
+                function pos(value) {
+                    return Math.sqrt(Math.pow(value, 2));
+                }
+                
+                document.onmousemove = function(e) {
+                    var xDist = Math.abs(e.pageX - button.offsetLeft - button.clientWidth / 2);
+                    var yDist = Math.abs(e.pageY - button.offsetTop - button.clientHeight / 2);
+                    var dist = Math.sqrt(xDist * xDist + yDist * yDist);
+                    
+                    BUTTONS.volume = 1 - dist / (button.offsetLeft + button.clientWidth / 2);
+                    let fade = 1 - dist / (button.offsetLeft + button.clientWidth / 2) / distFactor;
+                    
+                    $('img').s({
+                        opacity: fade
+                    });
+                };
+                
+                $('body').s({overflow: 'hidden'});
+                $('img').src = 'spin.gif';
+                
+                $('img').s({
+                    opacity: 0,
+                    width: window.innerWidth + 'px',
+                    height: window.innerHeight + 'px',
+                    transform: $("img").position(0, 0)
+                });
+            })();
+        </script>
+    </body>
+</html>
